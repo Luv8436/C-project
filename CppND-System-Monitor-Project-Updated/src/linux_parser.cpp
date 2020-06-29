@@ -280,7 +280,11 @@ string LinuxParser::Ram(int pid) {
       }
     }
   }
-  return value;
+  std::istringstream memory(value);
+  string size;
+  memory >> size ;
+  int mem = std::stof(size)/1024;
+  return to_string(mem)+" MB";
 }
 
 // TODO: Read and return the user ID associated with a process

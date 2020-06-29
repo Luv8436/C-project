@@ -54,22 +54,7 @@ string Process::Command() {
 
 // TODO: Return this process's memory utilization
 string Process::Ram() {
-    std::ifstream filestream(kProcDirectory+ to_string(Pid())+kStatusFilename);
-    string value;
-    string unit;
-    if(filestream.is_open()){
-        string line;
-        string key;
-        while(std::getline(filestream , line)) {
-            std::istringstream linestream(line);
-            linestream >> key >> value >> unit ;
-            if (key == "VmSize:")
-            {
-                break;
-            }
-        }
-    }
-    return value+" "+ unit;
+ return LinuxParser::Ram(Pid());
 }
 
 // TODO: Return the user (name) that generated this process
